@@ -47,9 +47,9 @@ class Cadastrante {
         return perfil;
     }
 
-    public class Usuario extends Cadastrante {
+    class Usuario extends Cadastrante {
         private Perfil perfil;
-        
+
         public Usuario(String nomeCompleto, String cpf, String cargo, String email, String senha, Perfil perfil) {
             super(nomeCompleto, cpf, cargo, email, senha, perfil);
             this.perfil = perfil;
@@ -116,4 +116,5 @@ class Cadastrante {
 
         scanner.close();
     }
+
 }
