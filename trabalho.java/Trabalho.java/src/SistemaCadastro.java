@@ -1,65 +1,72 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-enum Perfil {
-    COLABORADOR {
-        @Override
-        public void exibirPerfil(Usuario usuario) {
-            System.out.println("Colaborador: " + usuario.getNome() + " | Email: " + usuario.getEmail());
-        }
-    },
-    GERENTE {
-        @Override
-        public void exibirPerfil(Usuario usuario) {
-            System.out.println("Gerente: " + usuario.getNome() + " | CPF: " + usuario.getCpf());
-        }
-    },
-    ADMINISTRADOR {
-        @Override
-        public void exibirPerfil(Usuario usuario) {
-            System.out.println("Administrador: " + usuario.getNome() + " | Login: " + usuario.getLogin());
-        }
-    };
-
-    public abstract void exibirPerfil(Usuario usuario);
-}
-
+// Classe base
 class Usuario {
-    private String nomeCompleto;
-    private String cpf;
-    private String email;
-    private String login;
-    private String senha;
-    private Perfil perfil;
+    protected String nomeCompleto;
+    protected String cpf;
+    protected String email;
+    protected String login;
+    protected String senha;
+    protected String cargo;
 
-    public Usuario(String nomeCompleto, String cpf, String email, String login, String senha, Perfil perfil) {
+    public Usuario(String nomeCompleto, String cpf, String email, String login, String senha, String cargo) {
         this.nomeCompleto = nomeCompleto;
         this.cpf = cpf;
         this.email = email;
         this.login = login;
         this.senha = senha;
-        this.perfil = perfil;
+        this.cargo = cargo;
     }
 
-    public String getNome() { return nomeCompleto; }
-    public String getCpf() { return cpf; }
-    public String getEmail() { return email; }
-    public String getLogin() { return login; }
-    public String getSenha() { return senha; }
-    public Perfil getPerfil() { return perfil; }
-
+    // Polimorfismo: cada perfil vai exibir detalhes diferentes
     public void exibirPerfil() {
-        perfil.exibirPerfil(this);
+        System.out.println("Usuário comum: " + nomeCompleto);
     }
 }
 
+// Subclasses herdando de Usuario
+class Colaborador extends Usuario {
+    public Colaborador(String nomeCompleto, String cpf, String email, String login, String senha) {
+        super(nomeCompleto, cpf, email, login, senha, "Colaborador");
+    }
+
+    @Override
+    public void exibirPerfil() {
+        System.out.println("Perfil de Colaborador: " + nomeCompleto + " | Email: " + email);
+    }
+}
+
+class Gerente extends Usuario {
+    public Gerente(String nomeCompleto, String cpf, String email, String login, String senha) {
+        super(nomeCompleto, cpf, email, login, senha, "Gerente");
+    }
+
+    @Override
+    public void exibirPerfil() {
+        System.out.println("Perfil de Gerente: " + nomeCompleto + " | CPF: " + cpf);
+    }
+}
+
+class Administrador extends Usuario {
+    public Administrador(String nomeCompleto, String cpf, String email, String login, String senha) {
+        super(nomeCompleto, cpf, email, login, senha, "Administrador");
+    }
+
+    @Override
+    public void exibirPerfil() {
+        System.out.println("Perfil de Administrador: " + nomeCompleto + " | Login: " + login);
+    }
+}
+
+// Classe principal para o sistema de cadastro
 public class SistemaCadastro {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         ArrayList<Usuario> usuarios = new ArrayList<>();
+
         boolean continuar = true;
 
-        // Cadastro de usuários
         while (continuar) {
             System.out.println("\n=== Cadastro de Usuário ===");
             System.out.print("Nome completo: ");
@@ -73,26 +80,27 @@ public class SistemaCadastro {
             System.out.print("Senha: ");
             String senha = sc.nextLine();
 
-            System.out.println("Selecione o perfil: ");
-            System.out.println("1 - Colaborador");
-            System.out.println("2 - Gerente");
-            System.out.println("3 - Administrador");
+            System.out.println("Selecione o perfil (1 - Colaborador | 2 - Gerente | 3 - Administrador): ");
             int opcao = sc.nextInt();
-            sc.nextLine();
+            sc.nextLine(); // consumir quebra de linha
 
-            Perfil perfilEscolhido;
+            Usuario usuario;
             switch (opcao) {
-                case 1: perfilEscolhido = Perfil.COLABORADOR; break;
-                case 2: perfilEscolhido = Perfil.GERENTE; break;
-                case 3: perfilEscolhido = Perfil.ADMINISTRADOR; break;
+                case 1:
+                    usuario = new Colaborador(nome, cpf, email, login, senha);
+                    break;
+                case 2:
+                    usuario = new Gerente(nome, cpf, email, login, senha);
+                    break;
+                case 3:
+                    usuario = new Administrador(nome, cpf, email, login, senha);
+                    break;
                 default:
-                    System.out.println("Opção inválida, será cadastrado como COLABORADOR.");
-                    perfilEscolhido = Perfil.COLABORADOR;
+                    System.out.println("Opção inválida, será cadastrado como Colaborador.");
+                    usuario = new Colaborador(nome, cpf, email, login, senha);
             }
 
-            Usuario usuario = new Usuario(nome, cpf, email, login, senha, perfilEscolhido);
             usuarios.add(usuario);
-
             System.out.println("\nUsuário cadastrado com sucesso!");
             usuario.exibirPerfil();
 
@@ -103,25 +111,9 @@ public class SistemaCadastro {
             }
         }
 
-        // Simulação de login
-        System.out.println("\n=== Tela de Login ===");
-        System.out.print("Digite o login: ");
-        String login = sc.nextLine();
-        System.out.print("Digite a senha: ");
-        String senha = sc.nextLine();
-
-        boolean autenticado = false;
+        System.out.println("\n=== Lista de Usuários Cadastrados ===");
         for (Usuario u : usuarios) {
-            if (u.getLogin().equals(login) && u.getSenha().equals(senha)) {
-                System.out.println("\nLogin bem-sucedido!");
-                u.exibirPerfil();
-                autenticado = true;
-                break;
-            }
-        }
-
-        if (!autenticado) {
-            System.out.println("\nLogin ou senha incorretos!");
+            u.exibirPerfil(); // polimorfismo em ação
         }
 
         sc.close();
