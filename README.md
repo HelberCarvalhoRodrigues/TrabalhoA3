@@ -1,10 +1,11 @@
-Sistema de Gerenciamento Simples 
-(Java) 
+
+# Sistema de Gerenciamento Simples (Java) 
 Este é um sistema em Java, desenvolvido para operar via linha de comando (console), 
 que simula o cadastro e gerenciamento de Usuários, Projetos e Equipes. Ele utiliza 
 conceitos de Programação Orientada a Objetos (POO), como herança e 
 polimorfismo, para estruturar o cadastro de diferentes perfis de usuários. 
-Funcionalidades 
+
+# Funcionalidades 
 O sistema oferece as seguintes opções no menu principal: 
 1. Cadastrar Usuário: Permite registrar um novo usuário com perfil de 
 Colaborador, Gerente ou Administrador. 
@@ -18,11 +19,13 @@ cadastrados como membros.
 equipes vinculadas. 
 6. Listar Equipes: Exibe os detalhes de todas as equipes, incluindo seus membros 
 e projetos associados. 
-7. Sair: Encerra o programa. 
-️ Estrutura do Código 
+7. Sair: Encerra o programa.
+
+# Estrutura do Código 
 O código está organizado em classes principais que representam as entidades do 
 sistema e a lógica de execução: 
-Classes de Entidade 
+
+## Classes de Entidade 
 • Usuario (Classe Base): Define as propriedades comuns de um usuário (nome, 
 CPF, email, login, senha, cargo). Contém um método exibirPerfil() 
 polimórfico. 
@@ -35,7 +38,8 @@ informações específicas do cargo.
 Gerente responsável e uma lista de Equipes vinculadas. 
 • Equipe: Representa uma equipe com nome, descrição, uma lista de Usuarios 
 como membros e uma lista de Projetos associados. 
-Classe Principal 
+
+## Classe Principal 
 • SistemaCadastro (Classe Principal com main): 
 o Responsável pela interação com o usuário via Scanner e pelo menu 
 principal em um loop. 
@@ -46,8 +50,8 @@ cadastrarProjeto, cadastrarEquipe) que implementam a lógica de
 criação e associação das entidades. 
 o Inclui um tratamento básico de exceção (InputMismatchException) 
 para entradas inválidas no menu. 
-�
-� Como Executar 
+
+# Como Executar 
 1. Salve o código em um arquivo chamado SistemaCadastro.java. 
 2. Compile o código usando o compilador Java: 
 Bash 
@@ -55,8 +59,9 @@ javac SistemaCadastro.java
 3. Execute o programa a partir do terminal: 
 Bash 
 java SistemaCadastro 
-4. Siga as instruções do menu para interagir com o sistema. 
-Observações 
+4. Siga as instruções do menu para interagir com o sistema.
+   
+# Observações 
 • O sistema não possui persistência de dados, ou seja, todos os dados 
 cadastrados são perdidos ao sair do programa. 
 • As associações entre projetos, equipes e usuários são feitas em memória 
