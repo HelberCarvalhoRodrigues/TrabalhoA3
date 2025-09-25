@@ -40,15 +40,15 @@ Gerente responsável e uma lista de Equipes vinculadas.
 como membros e uma lista de Projetos associados. 
 
 ## Classe Principal 
-• SistemaCadastro (Classe Principal com main): 
-o Responsável pela interação com o usuário via Scanner e pelo menu 
+* SistemaCadastro (Classe Principal com main): 
+* Responsável pela interação com o usuário via Scanner e pelo menu 
 principal em um loop. 
-o Utiliza ArrayLists para armazenar as coleções de usuarios, projetos 
+* Utiliza ArrayLists para armazenar as coleções de usuarios, projetos 
 e equipes. 
-o Contém métodos estáticos auxiliares (cadastrarUsuario, 
+* Contém métodos estáticos auxiliares (cadastrarUsuario, 
 cadastrarProjeto, cadastrarEquipe) que implementam a lógica de 
 criação e associação das entidades. 
-o Inclui um tratamento básico de exceção (InputMismatchException) 
+* Inclui um tratamento básico de exceção (InputMismatchException) 
 para entradas inválidas no menu. 
 
 # Como Executar 
