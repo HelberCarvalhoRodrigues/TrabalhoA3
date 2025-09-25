@@ -26,17 +26,17 @@ O código está organizado em classes principais que representam as entidades do
 sistema e a lógica de execução: 
 
 ## Classes de Entidade 
-• Usuario (Classe Base): Define as propriedades comuns de um usuário (nome, 
+* Usuario (Classe Base): Define as propriedades comuns de um usuário (nome, 
 CPF, email, login, senha, cargo). Contém um método exibirPerfil() 
 polimórfico. 
-o Subclasses (Colaborador, Gerente, Administrador): Herdam de 
+* Subclasses (Colaborador, Gerente, Administrador): Herdam de 
 Usuario e sobrescrevem o método exibirPerfil() para exibir 
 informações específicas do cargo. 
-• StatusProjeto (Enum): Define os possíveis estados de um projeto 
+* StatusProjeto (Enum): Define os possíveis estados de um projeto 
 (PLANEJADO, EM_ANDAMENTO, CONCLUIDO, CANCELADO). 
-• Projeto: Representa um projeto com nome, descrição, datas, status, um 
+* Projeto: Representa um projeto com nome, descrição, datas, status, um 
 Gerente responsável e uma lista de Equipes vinculadas. 
-• Equipe: Representa uma equipe com nome, descrição, uma lista de Usuarios 
+* Equipe: Representa uma equipe com nome, descrição, uma lista de Usuarios 
 como membros e uma lista de Projetos associados. 
 
 ## Classe Principal 
@@ -62,11 +62,11 @@ java SistemaCadastro
 4. Siga as instruções do menu para interagir com o sistema.
    
 # Observações 
-• O sistema não possui persistência de dados, ou seja, todos os dados 
+* O sistema não possui persistência de dados, ou seja, todos os dados 
 cadastrados são perdidos ao sair do programa. 
-• As associações entre projetos, equipes e usuários são feitas em memória 
+* As associações entre projetos, equipes e usuários são feitas em memória 
 durante a execução. 
-• Sequência para cadastramento deve seguir a ordem, Usuário > Equipe > 
+* Sequência para cadastramento deve seguir a ordem, Usuário > Equipe > 
 Projeto. 
-• Há uma verificação de dependência: para cadastrar um projeto, é necessário 
+* Há uma verificação de dependência: para cadastrar um projeto, é necessário 
 que haja pelo menos um Gerente cadastrado.
